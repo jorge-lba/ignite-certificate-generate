@@ -1,5 +1,5 @@
 service:
-  name: ignite_certificate
+  name: ignite-certificate
 
 plugins:
   - serverless-offline
@@ -12,6 +12,8 @@ custom:
 
 provider:
   name: aws
+  runtime: nodejs14.x
+  region: sa-east-1
 
 functions:
   hello: 

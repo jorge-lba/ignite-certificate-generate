@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Serverless aws-nodejs-typescript template",
   "scripts": {
-    "dev": "serverless offline"
+    "dev": "serverless offline",
+    "deploy": "sls deploy -v"
   },
   "dependencies": {
     "@middy/core": "^1.5.2",
