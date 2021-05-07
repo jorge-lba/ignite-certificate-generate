@@ -1,0 +1,24 @@
+service:
+  name: ignite_certificate
+
+plugins:
+  - serverless-offline
+  - serverless-webpack
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+provider:
+  name: aws
+
+functions:
+  hello: 
+    handler: src/functions/hello.handle
+    events:
+      - http:
+          path: /hello
+          method: GET
+          cors: true
+
