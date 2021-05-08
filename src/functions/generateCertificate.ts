@@ -21,7 +21,7 @@ interface ITemplate {
 }
 
 const compile = async function (data:ITemplate) {
-  const filePath = path.join(process.cwd(), "src", "template", "certificate.hbs")
+  const filePath = path.join(process.cwd(), "src", "templates", "certificate.hbs")
 
   const html = fs.readFileSync(filePath, "utf-8")
 
@@ -40,7 +40,7 @@ export const handle = async (event) => {
     }
   }).promise()
 
-  const medalPath = path.join(process.cwd(), "src", "template", "selo.png")
+  const medalPath = path.join(process.cwd(), "src", "templates", "selo.png")
   const medal = fs.readFileSync(medalPath, "base64")
 
   const data:ITemplate = {
@@ -52,6 +52,28 @@ export const handle = async (event) => {
   }
 
   const content = await compile(data)
+
+  const browser = await chromium.puppeteer.launch({
+    headless: true,
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath
+  })
+
+  const page = await browser.newPage()
+
+  await page.setContent(content)
+
+  const pdfPath = path.join(process.cwd(), "pdf/")
+  const pdf = await page.pdf({
+    format: "a4",
+    landscape: true,
+    path: process.env.IF_OFFLINE ? pdfPath + "certificate.pdf" : null,
+    printBackground: true,
+    preferCSSPageSize: true
+  })
+
+  await  browser.close()
 
   return {
     statusCode: 201,

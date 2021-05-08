@@ -13,3 +13,5 @@ jspm_packages
 yarn-error.log
 
 .dynamodb
+
+pdf
