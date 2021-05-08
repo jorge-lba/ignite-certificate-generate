@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Serverless aws-nodejs-typescript template",
   "scripts": {
-    "dev": "IF_OFFLINE=true serverless offline",
+    "dev": "serverless offline",
     "deploy": "sls deploy -v",
     "dynamo:start": "serverless dynamodb start"
   },
@@ -20,6 +20,7 @@
     "@serverless/typescript": "^2.23.0",
     "@types/aws-lambda": "^8.10.71",
     "@types/node": "^14.14.25",
+    "copy-webpack-plugin": "^8.1.1",
     "json-schema-to-ts": "^1.5.0",
     "puppeteer": "^9.1.1",
     "serverless": "^2.23.0",
