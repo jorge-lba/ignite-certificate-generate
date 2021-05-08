@@ -9,3 +9,7 @@ jspm_packages
 .webpack
 
 .env
+
+yarn-error.log
+
+.dynamodb
